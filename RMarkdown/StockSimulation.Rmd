@@ -29,7 +29,7 @@ This script will optimize a portfolio based on stocks the user provides and the 
 ###Historical Average Risk-Returns for Each Stock###
 We will use the package `StockPortfolio` for a number of critical steps. Additionally, for our data wrangling and charting needs, we will use `data.table` and `googleVis`, respectively. For this, its also a good idea to turn off scientific notation for presentation of numbers.
 
-```{r, echo=FALSE}
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
 library(stockPortfolio)
 library(data.table)
 library(googleVis)
@@ -54,8 +54,19 @@ names(stockReturns)
 lapply(stockReturns[["full"]],head)
 ```
 ###Weighting each Stock to get Optimal Portfolio###
-Here's where we will gloss over nobel prize winning math, critical explanations of the theory, and anything else that's not cool. Using
+The next step involves using your historical returns, calculating each stock's **mu** and **sigma**, then relying on the nobel winning Mordern Portfolio Theory introduced by Harry Markowitz to derive the best possible weighting of each stock in our portfolio. 
 
+#####Modern Portfolio Theory#####
+In a nutshell, the theory says that there is a set of reward-maximizing portfolios, based on the level of risk you take, that form what is known as *the efficient frontier*. Portfolios not on the efficient frontier can be replaced with a portfolio that either generate more reward for that level of risk, or generates same reward for lesser risk. 
+> It is the set of portfolios each with the feature that no other portfolio exists with a higher expected return but with the same standard deviation of return.
+
+We can use the mathematical fact that a portfolio's calculated return is simply a weighted average of the return of each stock, and similarly, a porfolio's standard deviation of returns is also linear with respect to the weights:
+
+E(R_p) = \sum_{i}w_iE(R_i) 
+
+where R_p is the return of the portfolio, and R_i is the return on asset i. Wi is the weighting of that asset within the portfolio.
+
+\sigma^2_p = \sum 
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
