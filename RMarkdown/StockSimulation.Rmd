@@ -14,11 +14,15 @@ This script will optimize a portfolio based on stocks the user provides and the 
 
 ###In Steps###
 
-**STEP 1:** Get historical stock returns and average return (mu) and risk (sigma)
+**STEP 1:** Get historical stock prices and calculate returns $\left(\mu_i = E(R_i)\right)$ and risk $\left(\sigma_i  = \sqrt{Variance}\right)$
 
-**STEP 2:** Calculate the weights of each stock in a optimal portfolio (efficient frontier)\n
+**STEP 2:** Calculate the weights of each stock ($w_i$) in a optimal portfolio (efficient frontier). Note that the sum of the weights of each stock in your portfolio must equal 100%:
 
-**STEP 3:** Calculate a *portfolio* risk and return pair *(mu, sigma)*
+$$\sum_{i=1}^n w_i = w_1 + w_2 + ... + w_n = 1$$
+
+**STEP 3:** Calculate a *portfolio* risk and return pair
+
+$$\mu_p = \sum_{i=1}^n w_i \mu_i = \sum_{i=1}^n w_i E(R_i)$$
 
 **STEP 4:** Using (mu, sigma) conduct *N* random walks (1 step = 1 day) and average by day across all N random walks
 
@@ -62,7 +66,7 @@ In a nutshell, the theory says that there is a set of reward-maximizing portfoli
 
 We can use the mathematical fact that a portfolio's calculated return is simply a weighted average of the return of each stock, and similarly, a porfolio's standard deviation of returns is also linear with respect to the weights:
 
-E(R_p) = \sum_{i}w_iE(R_i) 
+$$E(R_p) = \sum_{i}w_iE(R_i)$$ 
 
 where R_p is the return of the portfolio, and R_i is the return on asset i. Wi is the weighting of that asset within the portfolio.
 
